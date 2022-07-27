@@ -1,3 +1,5 @@
+//Aim:Write A Program to implement Queue With intersection, deletion, traversal operation.
+
 #include<iostream>
 using namespace std;
 #define MAX 50
@@ -10,14 +12,14 @@ int front=-1;
 int main()
 {
 int choice;
-while(1)
+while (1)
 {
-cout<<'\n*****QUEUE OEPRATION****\n";
+cout<<"\n*****QUEUE OPERATION****\n";
 cout<<"1.Insert element to queue \n";
 cout<<"2.Delete element from queue \n";
 cout<<"3.Display all element of queue \n";
 cout<<"4.Quit \n";
-cout<<"Enter your choice :";
+cout<<"Enter your choice : ";
 cin>>choice;
 switch(choice)
 {
@@ -34,47 +36,53 @@ case 4:
 exit(1);
 default:
 cout<<"Wrong choice \n";
-}/*End of switch*/
-}/*End of while*/
-}/*End of main()*/
+} /* End of switch */
+} /* End of while */
+} /* End of Main() */
+
 void insert()
 {
 int add_item;
-if (rear==MAX-1)
-printf("Queue overflow\n");
-else
-{
-if (front==-1)
-front=0;
-cout<<"Insert the element in queue:";
+if (rear == MAX - 1)
+printf("Queue Overflow \n");
+else {
+if (front == -1)
+/*If queue is initially empty */
+front = 0;
+cout<<"Insert the element in queue : ";
 cin>>add_item;
-rear=rear+1;
+rear = rear + 1;
 queue_array[rear]=add_item;
 }
-}/*End of insert()*/
+}/* End of insert()*/
+
+//In the function delete
+
 void deleteq()
 {
-if (front==-1||front>rear)
+if (front == -1 || front > rear)
 {
-cout<<"Queue Underflow\n";
+cout<<"Queue Underflow \n";
 return;
-}
-else
+}else
 {
-cout<<"Element deleted from queue is:\n"<<queue_array[front];
-front=front+1;
+cout<<"Element deleted from the queue is : \n"<< queue_array[front];
+front = front + 1;
 }
-}/*End of delete()*/
+} /* End of delete() */
+
 void display()
 {
 int i;
-if (front==-1)
-cout<<"Queue is empty\n";
+if (front == -1)
+cout<<"Queue is empty \n";
 else
 {
-cout<<"Queue is :\n\t";
-for(i=front;i<=rear;i++)
+cout<<"Queue is : \n\t";
+for (i = front; i<= rear; i++)
 cout<<"\t"<<queue_array[i];
 cout<<"\n";
 }
-}/*End of display()*/
+} /* End of display() */
+
+
