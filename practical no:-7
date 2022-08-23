@@ -1,0 +1,92 @@
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+struct node
+{
+int value;
+struct node * left_child,*right_child;
+};
+struct node*new_node(int value)
+{
+struct node *tmp=(struct node*)malloc(sizeof(struct node));
+tmp->value=value;
+tmp->left_child=tmp->right_child=NULL;
+return tmp;
+}
+void print(struct node*root_node)//displaying the nodes!
+{
+if(root_node!=NULL)
+{
+print(root_node->left_child);
+print(root_node->right_child);
+}
+}
+struct node*insert_node(struct node* node,int value)//inserting nodes!
+{
+if(node==NULL)return new_node(value);
+if(value < node->value)
+{
+node->left_child=insert_node(node->left_child,value);
+}
+else if(value > node->value)
+{
+node->left_child=insert_node(node->right_child,value);
+}
+return node;
+}
+void nodedel(struct node* node){
+if(node==NULL)return;
+nodedel(node->left_child);
+nodedel(node->right_child);
+cout<<"\t"<<node->value;
+free(node);
+}
+void display_perorder(node*binary_tree){
+if(binary_tree){
+cout<<"\t"<<binary_tree->value;
+display_perorder(binary_tree->left_child);
+display_perorder(binary_tree->right_child);
+}
+}
+void display_inorder(node*binary_tree){
+if(binary_tree){
+display_inorder(binary_tree->left_child);
+cout<<"\t"<<binary_tree->value;
+display_inorder(binary_tree->right_child);
+}
+}
+void display_postorder(node*binary_tree){
+if(binary_tree){
+display_postorder(binary_tree->left_child);
+display_postorder(binary_tree->right_child);
+cout<<"\t"<<binary_tree->value;
+}
+}
+int main()
+{
+printf("Implementation of a Binary Tree in C!\n\n");
+struct node*root_node=NULL;
+struct node *p=insert_node(root_node,1);
+struct node *p1=insert_node(root_node,2);
+struct node *p2=insert_node(root_node,3);
+struct node *p3=insert_node(root_node,4);
+struct node *p4=insert_node(root_node,5);
+p->left_child=p1;
+p->right_child=p2;
+p1->left_child=p3;
+p2->right_child=p4;
+print(p);
+cout<<"display_preorder";
+display_perorder(p);
+cout<<"\ndisplay_postorder";
+display_postorder(p);
+cout<<"\ndisplay_inorder";
+display_inorder(p);
+printf("\n Tree deleted \n");
+nodedel(p);
+root_node=NULL;
+cout<<"\nroot_node\t"<<root_node;
+return 0;
+return 0;
+}
